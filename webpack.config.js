@@ -3,14 +3,15 @@ const CopyPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
+const webpack = require("webpack");
 module.exports = {
   mode: "production",
   entry: {
-    popup: "./src/index.js",
+    popup: "./src/index.js"
   },
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: "[name].js",
+    filename: "[name].js"
   },
   module: {
     rules: [
@@ -19,22 +20,22 @@ module.exports = {
         use: {
           loader: "babel-loader",
           options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
-          },
+            presets: ["@babel/preset-env", "@babel/preset-react"]
+          }
         },
-        exclude: /node_modules/,
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
-      },
-    ],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"]
+      }
+    ]
   },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "/public/index.html",
-      filename: "popup.html",
+      filename: "popup.html"
     }),
     new CopyPlugin({
       patterns: [
@@ -42,24 +43,27 @@ module.exports = {
           from: "public",
           to: ".",
           globOptions: {
-            ignore: ["**/index.html"],
-          },
+            ignore: ["**/index.html"]
+          }
         },
         {
           from: "worker",
-          to: ".",
-        },
-      ],
+          to: "."
+        }
+      ]
     }),
     new MiniCssExtractPlugin({
-      filename: "styles.css",
+      filename: "styles.css"
     }),
+    new webpack.DefinePlugin({
+      process: { env: {} }
+    })
   ],
   devServer: {
     static: {
-      directory: path.join(__dirname, "build"),
+      directory: path.join(__dirname, "build")
     },
     compress: true,
-    port: 9000,
-  },
+    port: 9000
+  }
 };
