@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
-import Dashboard from "./Dashboard";
 import { RingLoader } from "react-spinners";
 import { Link } from "react-chrome-extension-router";
 import Support from "../components/Support";
+import PasswordManager from "./PasswordManager";
 
 const Generate = () => {
   const [generating, setGenerating] = useState(false);
@@ -51,10 +51,10 @@ const Generate = () => {
                 Not sure what to?
                 <Link
                   className="text-indigo-400 focus:outline-none focus:underline focus:text-indigo-500 focus:border-indigo-800"
-                  component={Dashboard}
+                  component={PasswordManager}
                 >
                   {" "}
-                  Dashboard
+                  Go Back
                 </Link>
               </p>
             </div>

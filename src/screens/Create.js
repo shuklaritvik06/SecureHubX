@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { goTo, Link } from "react-chrome-extension-router";
-import Dashboard from "./Dashboard";
+import { Link } from "react-chrome-extension-router";
 import { RingLoader } from "react-spinners";
 import { toast, ToastContainer } from "react-toastify";
+import PasswordManager from "./PasswordManager";
 
 const Create = () => {
   const [creating, setCreating] = useState(false);
@@ -39,10 +39,10 @@ const Create = () => {
                 Not sure what to?
                 <Link
                   className="text-indigo-400 focus:outline-none focus:underline focus:text-indigo-500 focus:border-indigo-800"
-                  component={Dashboard}
+                  component={PasswordManager}
                 >
                   {" "}
-                  Dashboard
+                  Go Back
                 </Link>
               </p>
             </div>
