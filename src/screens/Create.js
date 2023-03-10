@@ -33,7 +33,7 @@ const Create = () => {
                 />
               </div>
               <h1 className="block text-xl font-bold text-white">
-                Create a Password
+                Save a Password
               </h1>
               <p className="mt-2 text-sm text-gray-400">
                 Not sure what to?

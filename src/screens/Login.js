@@ -81,19 +81,19 @@ const Login = () => {
             name="password"
             id="password"
             placeholder="*********"
-            className="w-full relative px-3 py-3 placeholder-gray-500 border rounded-md focus:outline-none focus:ring-1 focus:border-indigo-300 bg-gray-700 text-white border-gray-600"
+            className="w-full px-3 py-3 placeholder-gray-500 border rounded-md focus:outline-none focus:ring-1 focus:border-indigo-300 bg-gray-700 text-white border-gray-600"
           />
-          <div className="absolute right-[5%] bottom-[35%]">
+          <div className="relative">
             {showPass ? (
               <AiOutlineEyeInvisible
                 color={"white"}
-                className="cursor-pointer"
+                className=" absolute right-[5%] bottom-[35%] cursor-pointer"
                 onClick={() => setShowPass(!showPass)}
               />
             ) : (
               <AiOutlineEye
                 color={"white"}
-                className="cursor-pointer"
+                className="absolute right-[5%] bottom-[35%] cursor-pointer"
                 onClick={() => setShowPass(!showPass)}
               />
             )}

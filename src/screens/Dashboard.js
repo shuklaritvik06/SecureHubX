@@ -4,6 +4,7 @@ import Login from "./Login";
 import PasswordManager from "./PasswordManager";
 import GitHubOrgManager from "./GitHubOrgManager";
 import Logo from "../components/Logo";
+import Support from "../components/Support";
 
 const Dashboard = () => {
   useEffect(() => {
@@ -35,26 +36,7 @@ const Dashboard = () => {
               GitHub Manager
             </Link>
           </div>
-          <div className="mt-16 flex flex-col w-full items-center">
-            <p className="text-white text-lg font-bold mb-5">
-              Loved my work?
-              <span className="text-md text-blue-400 font-medium">
-                {" "}
-                Support Me
-              </span>
-            </p>
-            <a
-              href="https://www.buymeacoffee.com/ritvikshukla"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
-                alt="Buy Me A Coffee"
-                style={{ height: "60px", width: "217px" }}
-              />
-            </a>
-          </div>
+          <Support />
         </div>
       </div>
     </div>
