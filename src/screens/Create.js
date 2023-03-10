@@ -1,22 +1,46 @@
 import React, { useState } from "react";
-import { Link } from "react-chrome-extension-router";
+import { goTo, Link } from "react-chrome-extension-router";
 import { RingLoader } from "react-spinners";
 import { toast, ToastContainer } from "react-toastify";
 import PasswordManager from "./PasswordManager";
+import Search from "./Search";
 
 const Create = () => {
   const [creating, setCreating] = useState(false);
   function createHandler() {
-    console.log("Hello");
     const email = document.querySelector("#email").value;
     const password = document.querySelector("#password").value;
     const domain = document.querySelector("#domain").value;
     const master = document.querySelector("#master").value;
-    if (email !== "" && password !== "" && domain !== "") {
+    if (email !== "" && password !== "" && domain !== "" && master !== "") {
       setCreating(true);
     } else {
       toast.info("Please fill all fields!");
+      return;
     }
+    fetch("http://localhost:5000/api/save", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        domain: domain,
+        master: master
+      })
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status == "success") {
+          toast.success("Saved Password");
+          setCreating(false);
+          goTo(Search);
+        } else {
+          toast.error(data.error);
+          setCreating(false);
+        }
+      });
   }
   return (
     <div className="w-screen h-screen bg-[#0a1929]">

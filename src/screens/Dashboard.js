@@ -5,6 +5,7 @@ import PasswordManager from "./PasswordManager";
 import GitHubOrgManager from "./GitHubOrgManager";
 import Logo from "../components/Logo";
 import Support from "../components/Support";
+import ArticleGenerator from "./ArticleGenerator";
 
 const Dashboard = () => {
   useEffect(() => {
@@ -34,6 +35,12 @@ const Dashboard = () => {
               className="p-3  m-3 bg-[#132f4c] border border-[#5090d3] text-2xl text-white font-extrabold rounded-md flex justify-center items-center"
             >
               GitHub Manager
+            </Link>
+            <Link
+              component={ArticleGenerator}
+              className="p-3  m-3 bg-[#132f4c] border border-[#5090d3] text-2xl text-white font-extrabold rounded-md flex justify-center items-center"
+            >
+              Article Generator
             </Link>
           </div>
           <Support />

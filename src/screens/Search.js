@@ -11,8 +11,10 @@ import PasswordManager from "./PasswordManager";
 const Search = () => {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState([]);
+  const [id, setId] = useState();
   const [searching, setSearching] = useState(false);
   const onOpenModal = (e) => {
+    setId(e.target.id);
     setOpen(true);
   };
   const onCloseModal = () => setOpen(false);
@@ -22,9 +24,56 @@ const Search = () => {
       setSearching(true);
     } else {
       toast.info("Please give search query!");
+      return;
+    }
+    fetch("http://localhost:5000/api/get", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        query: search.value
+      })
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status == "success") {
+          setData(data.data);
+          setSearching(false);
+        } else {
+          toast.error(data.error);
+          setSearching(false);
+        }
+      });
+  }
+  function decrypt() {
+    const master = document.querySelector("#master");
+    if (master.value !== "") {
+      fetch("http://localhost:5000/api/decrypt", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          id: id,
+          master: master.value
+        })
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.status == "success") {
+            toast.success("Password copied to clipboard!");
+            navigator.clipboard.writeText(data.password);
+            setOpen(false);
+          } else {
+            toast.error(data.error);
+          }
+        });
+    } else {
+      toast.info("Please give master key!");
+      return;
     }
   }
-  function decrypt() {}
   return (
     <div className="w-screen h-screen bg-[#0a1929] overflow-hidden">
       <ToastContainer />
@@ -73,14 +122,15 @@ const Search = () => {
           />
         </div>
       )}
-      <div className="overflow-y-scroll h-1/2">
+      <div className="h-1/2 overflow-y-scroll">
+        {" "}
         {data.length > 0 ? (
           <>
             {data.map((item) => {
               return (
                 <div
                   key={Math.random() * 1000}
-                  className="p-3 h-[30vh] mx-3 bg-[#132f4c] border border-[#5090d3] text-2xl text-white rounded-md my-3"
+                  className="p-3 mx-3 bg-[#132f4c] border border-[#5090d3] text-base text-white rounded-md my-3"
                 >
                   <div className="w-full flex justify-center">
                     <img
@@ -94,15 +144,19 @@ const Search = () => {
                     {item.email}
                   </div>
                   <div className="text-gray-600">
-                    <span className="text-white font-bold">Password: </span>
-                    **************
-                    <button
-                      className="ml-5 bg-blue-500 text-white p-2 rounded-md"
-                      id={item.password}
-                      onClick={(e) => onOpenModal(e)}
-                    >
-                      View
-                    </button>
+                    <div className="flex justify-between">
+                      <div>
+                        <span className="text-white font-bold">Password: </span>
+                        <span>********</span>
+                      </div>
+                      <button
+                        className="ml-5 bg-blue-500 text-white p-1 rounded-md"
+                        id={item.id}
+                        onClick={(e) => onOpenModal(e)}
+                      >
+                        View
+                      </button>
+                    </div>
                   </div>
                   <div className="text-gray-600">
                     <span className="text-white font-bold">Domain: </span>
@@ -116,25 +170,30 @@ const Search = () => {
           <></>
         )}
       </div>
-      <Modal open={open} onClose={onCloseModal} center>
+      <Modal
+        open={open}
+        onClose={onCloseModal}
+        center
+        styles={{
+          modalContainer: {
+            backgroundColor: "#0a1929"
+          }
+        }}
+      >
         <h2>Master key</h2>
         <input
           type="text"
           id="master"
-          className="border text-sm outline-none rounded-lg block w-full  p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
+          className="border mt-3 text-sm outline-none rounded-lg block w-full  p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white"
           placeholder="master key"
           required
         />
         <button
-          className="p-2 bg-blue-400 my-3 rounded-md text-white"
+          className="p-2 w-full bg-blue-400 my-3 rounded-md text-white"
           onClick={() => decrypt()}
         >
-          show
+          Get
         </button>
-        <h2 className="font-bold">Password</h2>
-        <div className="flex justify-between">
-          <p id="password">*********</p>
-        </div>
       </Modal>
     </div>
   );
