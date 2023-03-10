@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-chrome-extension-router";
+import { ToastContainer } from "react-toastify";
 import Logo from "../components/Logo";
 import Create from "./Create";
 import Generate from "./Generate";
@@ -8,7 +9,7 @@ import Search from "./Search";
 const PasswordManager = () => {
   return (
     <div className="w-[400px] h-[550px] bg-[#0a1929]">
-      {" "}
+      <ToastContainer />
       <div className="flex items-center">
         <div className="container mx-auto">
           <div className="max-w-md mx-auto mt-10 mb-8">

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { goTo, Link } from "react-chrome-extension-router";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { RingLoader } from "react-spinners";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import Logo from "../components/Logo";
 import Dashboard from "./Dashboard";
 import Register from "./Signup";
@@ -52,6 +52,7 @@ const Login = () => {
   }
   return (
     <div className="w-[400px] h-[500px] bg-[#0a1929]">
+      <ToastContainer />
       <div className="text-center">
         <Logo />
         <p className="text-white text-lg font-bold">
