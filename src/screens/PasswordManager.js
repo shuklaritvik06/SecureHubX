@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-chrome-extension-router";
+import Logo from "../components/Logo";
 import Create from "./Create";
 import Generate from "./Generate";
 import Search from "./Search";
@@ -11,14 +12,8 @@ const PasswordManager = () => {
       <div className="flex items-center">
         <div className="container mx-auto">
           <div className="max-w-md mx-auto mt-10 mb-8">
-            <div className="text-center">
-              <div className="w-full flex justify-center">
-                <img
-                  src="images/logo.png"
-                  alt="SecureHubX Logo"
-                  className="w-20 h-20 my-5"
-                />
-              </div>
+            <div>
+              <Logo />
             </div>
           </div>
           <div>

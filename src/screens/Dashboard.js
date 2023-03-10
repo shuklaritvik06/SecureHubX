@@ -3,6 +3,7 @@ import { goTo, Link } from "react-chrome-extension-router";
 import Login from "./Login";
 import PasswordManager from "./PasswordManager";
 import GitHubOrgManager from "./GitHubOrgManager";
+import Logo from "../components/Logo";
 
 const Dashboard = () => {
   useEffect(() => {
@@ -17,13 +18,7 @@ const Dashboard = () => {
         <div className="container mx-auto">
           <div className="max-w-md mx-auto mt-10 mb-8">
             <div className="text-center">
-              <div className="w-full flex justify-center">
-                <img
-                  src="images/logo.png"
-                  alt="SecureHubX Logo"
-                  className="w-24 h-24 my-5"
-                />
-              </div>
+              <Logo />
             </div>
           </div>
           <div>

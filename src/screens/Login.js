@@ -3,6 +3,7 @@ import { goTo, Link } from "react-chrome-extension-router";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { RingLoader } from "react-spinners";
 import { toast } from "react-toastify";
+import Logo from "../components/Logo";
 import Dashboard from "./Dashboard";
 import Register from "./Signup";
 
@@ -50,15 +51,9 @@ const Login = () => {
       });
   }
   return (
-    <div className="w-[400px] h-[550px] bg-[#0a1929]">
+    <div className="w-[400px] h-[500px] bg-[#0a1929]">
       <div className="text-center">
-        <div className="w-full flex justify-center">
-          <img
-            src="images/logo.png"
-            alt="SecureHubX Logo"
-            className="w-24 h-24 my-10"
-          />
-        </div>
+        <Logo />
         <p className="text-white text-lg font-bold">
           Sign in to access your account
         </p>
@@ -87,7 +82,7 @@ const Login = () => {
             placeholder="*********"
             className="w-full relative px-3 py-3 placeholder-gray-500 border rounded-md focus:outline-none focus:ring-1 focus:border-indigo-300 bg-gray-700 text-white border-gray-600"
           />
-          <div className="absolute right-[5%] bottom-[32%]">
+          <div className="absolute right-[5%] bottom-[35%]">
             {showPass ? (
               <AiOutlineEyeInvisible
                 color={"white"}
