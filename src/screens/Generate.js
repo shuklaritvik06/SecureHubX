@@ -10,8 +10,22 @@ const Generate = () => {
   const [generated, setGenerated] = useState("");
   function createHandler() {
     const size = document.querySelector("#size").value;
-    if (size > 5) {
+    if (size > 8) {
       setGenerating(true);
+      fetch("http://localhost:5000/api/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          size: size
+        })
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setGenerating(false);
+          setGenerated(data.password);
+        });
     } else {
       toast.info("Please give size above five");
     }
@@ -88,7 +102,7 @@ const Generate = () => {
                 <input
                   type="text"
                   id="password"
-                  class="block p-4 pl-10 w-full text-sm rounded-lg border border-gray-600 focus:ring-blue-500 focus:border-blue-500 bg-gray-700 placeholder-gray-400 text-white"
+                  class="block pl-2 py-4 w-full text-sm rounded-lg border border-gray-600 focus:ring-blue-500 focus:border-blue-500 bg-gray-700 placeholder-gray-400 text-white"
                   placeholder="Generated Password"
                   disabled={true}
                   value={generated}
@@ -96,7 +110,10 @@ const Generate = () => {
                 <button
                   type="submit"
                   class="text-white absolute right-2.5 bottom-2.5 hover:bg-blue-800 font-medium rounded-lg text-sm px-2 py-2 bg-blue-600"
-                  onClick={() => {}}
+                  onClick={() => {
+                    navigator.clipboard.writeText(generated);
+                    toast.success("Copied to clipboard");
+                  }}
                 >
                   Copy
                 </button>

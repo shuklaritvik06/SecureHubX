@@ -24,6 +24,7 @@ const Register = () => {
       setRegistering(true);
     } else {
       toast.info("Please fill all fields!");
+      return;
     }
     const email = document.querySelector("#email").value;
     const password = document.querySelector("#password").value;
@@ -70,7 +71,7 @@ const Register = () => {
             className="w-full px-3 py-3 placeholder-gray-500 border rounded-md focus:outline-none focus:ring-1 focus:border-indigo-300 bg-gray-700 text-white border-gray-600"
           />
         </div>
-        <div className="mb-6">
+        <div className="mb-6 relative">
           <label htmlFor="email" className="block mb-2 text-sm text-gray-400">
             Password
           </label>
@@ -79,9 +80,9 @@ const Register = () => {
             name="password"
             id="password"
             placeholder="*********"
-            className="w-full relative px-3 py-3 placeholder-gray-500 border rounded-md focus:outline-none focus:ring-1 focus:border-indigo-300 bg-gray-700 text-white border-gray-600"
+            className="w-full px-3 py-3 placeholder-gray-500 border rounded-md focus:outline-none focus:ring-1 focus:border-indigo-300 bg-gray-700 text-white border-gray-600"
           />
-          <div className="absolute right-[5%] bottom-[35%]">
+          <div className="absolute right-2 bottom-3">
             {showPass ? (
               <AiOutlineEyeInvisible
                 color={"white"}

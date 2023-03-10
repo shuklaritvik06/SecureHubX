@@ -24,6 +24,7 @@ const Login = () => {
       setLogging(true);
     } else {
       toast.info("Please fill all fields!");
+      return;
     }
     const email = document.querySelector("#email").value;
     const password = document.querySelector("#password").value;
@@ -72,7 +73,7 @@ const Login = () => {
             className="w-full px-3 py-3 placeholder-gray-500 border rounded-md focus:outline-none focus:ring-1 focus:border-indigo-300 bg-gray-700 text-white border-gray-600"
           />
         </div>
-        <div className="mb-6">
+        <div className="mb-6 relative">
           <label htmlFor="email" className="block mb-2 text-sm text-gray-400">
             Password
           </label>
@@ -83,17 +84,17 @@ const Login = () => {
             placeholder="*********"
             className="w-full px-3 py-3 placeholder-gray-500 border rounded-md focus:outline-none focus:ring-1 focus:border-indigo-300 bg-gray-700 text-white border-gray-600"
           />
-          <div className="relative">
+          <div className="absolute right-2 bottom-3">
             {showPass ? (
               <AiOutlineEyeInvisible
                 color={"white"}
-                className=" absolute right-[5%] bottom-[35%] cursor-pointer"
+                className="cursor-pointer"
                 onClick={() => setShowPass(!showPass)}
               />
             ) : (
               <AiOutlineEye
                 color={"white"}
-                className="absolute right-[5%] bottom-[35%] cursor-pointer"
+                className="cursor-pointer"
                 onClick={() => setShowPass(!showPass)}
               />
             )}

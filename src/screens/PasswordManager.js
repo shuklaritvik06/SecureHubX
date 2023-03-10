@@ -4,6 +4,7 @@ import { ToastContainer } from "react-toastify";
 import Logo from "../components/Logo";
 import Support from "../components/Support";
 import Create from "./Create";
+import Dashboard from "./Dashboard";
 import Generate from "./Generate";
 import Search from "./Search";
 
@@ -13,11 +14,22 @@ const PasswordManager = () => {
       <ToastContainer />
       <div className="flex items-center">
         <div className="container mx-auto">
-          <div className="max-w-md mx-auto mt-10 mb-8">
+          <div className="max-w-md mx-auto mt-3 mb-8">
             <div>
               <Logo />
             </div>
+            <p className="mt-2 text-sm text-gray-400 text-center">
+              Not sure what to?
+              <Link
+                className="text-indigo-400 focus:outline-none focus:underline focus:text-indigo-500 focus:border-indigo-800"
+                component={Dashboard}
+              >
+                {" "}
+                Dashboard
+              </Link>
+            </p>
           </div>
+
           <div>
             <Link
               component={Generate}

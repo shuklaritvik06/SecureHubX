@@ -43,6 +43,26 @@ app.post("/api/auth/register", (req, res) => {
       });
     });
 });
+
+app.post("/api/generate", (req, res) => {
+  const size = req.body.size;
+  const password = generatePassword(size);
+  res.json({
+    password: password
+  });
+});
+function generatePassword(size) {
+  let password = "";
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
+  for (let i = 0; i < size; i++) {
+    password += characters.charAt(
+      Math.floor(Math.random() * characters.length)
+    );
+  }
+  return password;
+}
+
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
