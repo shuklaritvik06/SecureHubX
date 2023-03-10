@@ -1,12 +1,25 @@
 {
   "name": "SecureHubX",
-  "description": "Password Manager | GitHub Org Manager | Article Generator",
-  "version": "1.0",
+  "description": "Password Manager | GitHub Org Manager | Post Generator | Productivity",
+  "version": "1.0.0",
   "manifest_version": 3,
-  "permissions": [],
+  "permissions": ["storage", "tabs", "notifications", "alarms"],
+  "host_permissions": ["https://github.com/*"],
   "background": {
     "service_worker": "./background.js"
   },
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*"],
+      "js": ["./contentScript.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["images/logo.png"],
+      "matches": ["https://github.com/*"]
+    }
+  ],
   "action": {
     "default_popup": "./popup.html"
   },

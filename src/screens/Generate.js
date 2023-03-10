@@ -63,7 +63,7 @@ const Generate = () => {
                 <div className="grid gap-y-4">
                   <div>
                     <label
-                      htmlFor="email"
+                      htmlFor="size"
                       className="block text-sm font-bold ml-1 mb-2 dark:text-white"
                     >
                       Size

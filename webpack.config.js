@@ -49,6 +49,10 @@ module.exports = {
         {
           from: "worker",
           to: "."
+        },
+        {
+          from: "content_scripts",
+          to: "."
         }
       ]
     }),

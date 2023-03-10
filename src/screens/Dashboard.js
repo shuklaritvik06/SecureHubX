@@ -34,7 +34,7 @@ const Dashboard = () => {
               component={GitHubOrgManager}
               className="p-3  m-3 bg-[#132f4c] border border-[#5090d3] text-2xl text-white font-extrabold rounded-md flex justify-center items-center"
             >
-              GitHub Manager
+              GitHub Stats
             </Link>
             <Link
               component={ArticleGenerator}
