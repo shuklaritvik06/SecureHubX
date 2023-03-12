@@ -51,7 +51,7 @@ module.exports = {
           to: "."
         },
         {
-          from: "scripts",
+          from: "content",
           to: "."
         }
       ]
