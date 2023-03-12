@@ -4,8 +4,8 @@ import Login from "./Login";
 import PasswordManager from "./PasswordManager";
 import GitHubOrgManager from "./GitHubOrgManager";
 import Logo from "../components/Logo";
-import Support from "../components/Support";
 import EmailGen from "./EmailGen";
+import URLBlocker from "./URLBlocker";
 
 const Dashboard = () => {
   useEffect(() => {
@@ -42,8 +42,28 @@ const Dashboard = () => {
             >
               Email Generator
             </Link>
+            <Link
+              component={URLBlocker}
+              className="p-3  m-3 bg-[#132f4c] border border-[#5090d3] text-2xl text-white font-extrabold rounded-md flex justify-center items-center"
+            >
+              URL Blocker
+            </Link>
           </div>
-          <Support />
+          <div className="w-full flex justify-center">
+            <div>
+              <a
+                href="https://www.buymeacoffee.com/ritvikshukla"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img
+                  src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+                  alt="Buy Me A Coffee"
+                  style={{ height: "60px", width: "217px" }}
+                />
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
